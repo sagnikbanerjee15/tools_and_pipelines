@@ -42,7 +42,7 @@ outputs:
   - id: prna_scaffolder_output
     type: Directory
     outputBinding:
-      glob: p_rna_scaffolder*
+      glob: output_folder_p_rna_scaffolder_*
 label: scaffold_prnascaffolder
 arguments:
   - position: 0
@@ -57,7 +57,7 @@ arguments:
     shellQuote: false
     valueFrom: |-
       ${
-          return " -o p_rna_scaffolder_"+inputs.contigs_filename.nameroot
+          return " -o output_folder_p_rna_scaffolder_"+inputs.contigs_filename.nameroot
       }
   - position: 5
     prefix: ''
