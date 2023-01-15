@@ -35,7 +35,7 @@ steps:
     out:
       - id: star_index_directory
     run: >-
-      https://raw.githubusercontent.com/sagnikbanerjee15/dockerized_tools_and_pipelines/main/star/2.7.9a/generate_index.cwl
+      https://raw.githubusercontent.com/sagnikbanerjee15/tools_and_pipelines/main/star/2.7.9a/generate_index.cwl
     label: generate_index
     'sbg:x': -193
     'sbg:y': -142
@@ -47,7 +47,7 @@ steps:
       - id: output_genome_sa_index_and_bases
       - id: output_chr_bin_n_bits
     run: >-
-      https://raw.githubusercontent.com/sagnikbanerjee15/dockerized_tools_and_pipelines/main/scripts/0.0.1/calculate_parameters_for_generating_star_index.cwl
+      https://raw.githubusercontent.com/sagnikbanerjee15/tools_and_pipelines/main/scripts/0.0.1/calculate_parameters_for_generating_star_index.cwl
     label: calculate_parameters_for_generating_star_index
     'sbg:x': -491.2808837890625
     'sbg:y': -104
