@@ -33,6 +33,7 @@ arguments:
           return "--output " + inputs.genome_fastafile.nameroot + "_fgmp_report"
       }
 requirements:
+  - class: InlineJavascriptRequirement
   - class: ShellCommandRequirement
   - class: DockerRequirement
     dockerPull: 'ghcr.io/sagnikbanerjee15/dockerized_tools_and_pipelines/fgmp:1.0.3'
