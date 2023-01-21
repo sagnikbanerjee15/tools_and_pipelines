@@ -15,10 +15,14 @@ inputs:
       prefix: '--threads'
       shellQuote: false
 outputs:
-  - id: report
+  - id: summary_report
     type: File
     outputBinding:
-      glob: '*fgmp_report*html'
+      glob: '*summary_report'
+  - id: full_report
+    type: File
+    outputBinding:
+      glob: '*full_report'
 label: assess_quality_fgmp
 arguments:
   - position: 5
