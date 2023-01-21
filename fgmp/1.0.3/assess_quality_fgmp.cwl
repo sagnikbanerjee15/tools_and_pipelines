@@ -18,6 +18,7 @@ inputs:
     inputBinding:
       position: 0
       prefix: '--threads'
+      shellQuote: false
 outputs:
   - id: report
     type: File
@@ -33,7 +34,7 @@ arguments:
           return "--output " + inputs.genome_fastafile.nameroot + "_fgmp_report"
       }
 requirements:
-  - class: InlineJavascriptRequirement
   - class: ShellCommandRequirement
   - class: DockerRequirement
     dockerPull: 'ghcr.io/sagnikbanerjee15/dockerized_tools_and_pipelines/fgmp:1.0.3'
+  - class: InlineJavascriptRequirement
