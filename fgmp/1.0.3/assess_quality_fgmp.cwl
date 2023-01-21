@@ -3,20 +3,15 @@ cwlVersion: v1.0
 $namespaces:
   sbg: 'https://www.sevenbridges.com/'
 id: assess_quality_fgmp
-baseCommand:
-  - fgmp.pl
+baseCommand: []
 inputs:
   - id: genome_fastafile
     type: File
-    inputBinding:
-      position: 0
-      prefix: '--genome'
-      shellQuote: false
   - 'sbg:toolDefaultValue': '1'
     id: threads
     type: int?
     inputBinding:
-      position: 0
+      position: 3
       prefix: '--threads'
       shellQuote: false
 outputs:
@@ -26,12 +21,19 @@ outputs:
       glob: '*fgmp_report'
 label: assess_quality_fgmp
 arguments:
-  - position: 0
+  - position: 2
     prefix: ''
     shellQuote: false
     valueFrom: |-
       ${
           return "--output " + inputs.genome_fastafile.nameroot + "_fgmp_report"
+      }
+  - position: 1
+    prefix: ''
+    shellQuote: false
+    valueFrom: |-
+      ${
+          return "cp " + inputs.genome_fastafile.path + " . && fgmp.pl --genome "+inputs.genome_fastafile.basename 
       }
 requirements:
   - class: ShellCommandRequirement
