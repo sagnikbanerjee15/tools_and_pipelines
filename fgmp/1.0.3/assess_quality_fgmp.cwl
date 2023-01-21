@@ -40,7 +40,7 @@ arguments:
     shellQuote: false
     valueFrom: |-
       ${
-          return "cp -r /software/FGMP/data . &&"
+          return "cp -r /software/FGMP/data . && cp -r /software/FGMP/src . && "
       }
   - position: 4
     prefix: ''
