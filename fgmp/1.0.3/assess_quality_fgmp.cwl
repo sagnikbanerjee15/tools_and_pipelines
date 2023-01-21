@@ -11,7 +11,7 @@ inputs:
     id: threads
     type: int?
     inputBinding:
-      position: 3
+      position: 5
       prefix: '--threads'
       shellQuote: false
 outputs:
@@ -21,7 +21,7 @@ outputs:
       glob: '*fgmp_report'
 label: assess_quality_fgmp
 arguments:
-  - position: 2
+  - position: 5
     prefix: ''
     shellQuote: false
     valueFrom: |-
@@ -33,7 +33,21 @@ arguments:
     shellQuote: false
     valueFrom: |-
       ${
-          return "cp " + inputs.genome_fastafile.path + " . && fgmp.pl --genome "+inputs.genome_fastafile.basename 
+          return "cp " + inputs.genome_fastafile.path + " . && "
+      }
+  - position: 3
+    prefix: ''
+    shellQuote: false
+    valueFrom: |-
+      ${
+          return "cp -r /software/FGMP/data . &&"
+      }
+  - position: 4
+    prefix: ''
+    shellQuote: false
+    valueFrom: |-
+      ${
+          return "fgmp.pl --genome "+inputs.genome_fastafile.basename 
       }
 requirements:
   - class: ShellCommandRequirement
