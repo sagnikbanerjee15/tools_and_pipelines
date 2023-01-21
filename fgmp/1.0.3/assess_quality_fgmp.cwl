@@ -18,7 +18,7 @@ outputs:
   - id: report
     type: File
     outputBinding:
-      glob: '*fgmp_report'
+      glob: '*fgmp_report*html'
 label: assess_quality_fgmp
 arguments:
   - position: 5
