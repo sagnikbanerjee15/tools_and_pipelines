@@ -2,7 +2,7 @@
 # fungal_genome_assemblies_and_annotation
 ###################################################################################################################################################################################################
 
-FROM ghcr.io/sagnikbanerjee15/dockerized_tools_and_pipelines/star:2.7.9a
+FROM sagnikbanerjee15/star:2.7.9a
 LABEL maintainer="sagnikbanerjee15@gmail.com" 
 LABEL org.opencontainers.image.source https://github.com/sagnikbanerjee15/dockerized_tools_and_pipelines
 

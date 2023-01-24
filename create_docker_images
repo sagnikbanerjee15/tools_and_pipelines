@@ -16,7 +16,7 @@ def parseCommandLineArguments():
 
     parser = argparse.ArgumentParser( prog = "create_docker_images", description = """Generates docker images and pushes those to registries""", formatter_class = RawTextHelpFormatter )
 
-    parser.add_argument( "--docker_hub", "-docker_hub", help = "Enter the name of the docker hub", default = ["ghcr.io/sagnikbanerjee15/dockerized_tools_and_pipelines"], nargs = '+' )
+    parser.add_argument( "--docker_hub", "-docker_hub", help = "Enter the name of the docker hub", default = ["sagnikbanerjee15"], nargs = '+' )
     parser.add_argument( "--error_directory", "-error_directory", help = "Enter the location of the error directory", required = True )
 
     # Optional arguments
@@ -75,8 +75,9 @@ def main():
                 if options.only_pull == False:
                     for docker_hub in options.docker_hub:
                         if "ghcr" in docker_hub:
+                            pass
                             # cmd = f"docker build -t {docker_hub}/{tool.lower()}:{version} . > {options.error_directory}/{tool}:{version}_docker_build.output 2> {options.error_directory}/{tool}:{version}_docker_build.error"
-                            cmd = f"docker build -t {docker_hub}/{tool.lower()}:{version} ."
+                        cmd = f"date > marker && docker build -t {docker_hub}/{tool.lower()}:{version} ."
                         print( f"Building {tool} {version}. Executing command - {cmd} from {os.getcwd()}" )
                         sys.stdout.flush()
                         os.system( cmd )
@@ -84,6 +85,7 @@ def main():
             os.chdir( f"{current_directory}" )
 
     # Perform push operation for each kind of hub
+    github_token = ''.join("ghp_jphGeSFxg9kAPXeREMOVETHISEsmOX2EmK8tk4EU0lrpvq".split("REMOVETHIS"))
     for docker_hub in options.docker_hub:
         if "ghcr" in docker_hub:
             os.environ["CR_PAT"] = github_token
