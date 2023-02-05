@@ -3,8 +3,7 @@ cwlVersion: v1.0
 $namespaces:
   sbg: 'https://www.sevenbridges.com/'
 id: bowtie_align
-baseCommand:
-  - bowtie
+baseCommand: []
 inputs:
   - id: index
     type:
@@ -70,6 +69,13 @@ arguments:
     prefix: ''
     shellQuote: false
     valueFrom: '${return "-x bowtie_index"}'
+  - position: -1
+    prefix: ''
+    shellQuote: false
+    valueFrom: |-
+      ${
+          return "cp " + inputs.index.path + " . && bowtie"
+      }
 requirements:
   - class: ShellCommandRequirement
   - class: DockerRequirement
