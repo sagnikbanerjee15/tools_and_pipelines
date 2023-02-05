@@ -83,6 +83,8 @@ steps:
     'sbg:y': 39.5
   - id: spades_assemble
     in:
+      - id: rna
+        default: true
       - id: mate1
         source: raw_input_files_pair1
       - id: mate2
