@@ -19,10 +19,7 @@ inputs:
       shellQuote: false
 outputs:
   - id: bowtie_index
-    type:
-      - File
-      - type: array
-        items: File
+    type: 'File[]'
     outputBinding:
       glob: bowtie_index*
 label: bowtie_build_index
