@@ -7,9 +7,6 @@ baseCommand: []
 inputs:
   - id: reference
     type: File
-    inputBinding:
-      position: 0
-      shellQuote: false
   - id: threads
     type: int?
     inputBinding:
