@@ -9,10 +9,6 @@ inputs:
     type: int?
     'sbg:x': 0
     'sbg:y': 88
-  - id: reference
-    type: File
-    'sbg:x': 0
-    'sbg:y': 550
   - id: mate1
     type: File?
     'sbg:x': 0
@@ -25,6 +21,10 @@ inputs:
     type: int?
     'sbg:x': 0
     'sbg:y': 207
+  - id: reference
+    type: File
+    'sbg:x': -0.1875
+    'sbg:y': 595
 outputs:
   - id: log
     outputSource:
@@ -33,23 +33,10 @@ outputs:
     'sbg:x': 820.0509033203125
     'sbg:y': 215
 steps:
-  - id: bowtie_build_index
+  - id: bowtie_align
     in:
       - id: reference
         source: reference
-      - id: threads
-        source: threads
-    out:
-      - id: bowtie_index
-    run: ./bowtie_build_index.cwl
-    label: bowtie_build_index
-    'sbg:x': 344.421875
-    'sbg:y': 433
-  - id: bowtie_align
-    in:
-      - id: index
-        source:
-          - bowtie_build_index/bowtie_index
       - id: threads
         source: threads
       - id: mate1

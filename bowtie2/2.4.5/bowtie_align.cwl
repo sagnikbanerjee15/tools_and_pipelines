@@ -5,11 +5,11 @@ $namespaces:
 id: bowtie_align
 baseCommand: []
 inputs:
-  - id: index
-    type:
-      - File
-      - type: array
-        items: File
+  - id: reference
+    type: File
+    inputBinding:
+      position: 0
+      shellQuote: false
   - id: threads
     type: int?
     inputBinding:
@@ -74,7 +74,7 @@ arguments:
     shellQuote: false
     valueFrom: |-
       ${
-          return "cp " + inputs.index.path + "* . && bowtie"
+          return "bowtie-build --threads " + inputs.threads + " " + inputs.reference.path + " bowtie_index && bowtie"
       }
 requirements:
   - class: ShellCommandRequirement
