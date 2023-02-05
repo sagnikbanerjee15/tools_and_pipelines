@@ -11,10 +11,6 @@ inputs:
       - File
       - type: array
         items: File
-    inputBinding:
-      position: 0
-      prefix: '-x'
-      shellQuote: false
   - id: threads
     type: int?
     inputBinding:
@@ -70,6 +66,10 @@ arguments:
       ${
           return "--no-unal"
       }
+  - position: 0
+    prefix: ''
+    shellQuote: false
+    valueFrom: '${return "-x bowtie_index"}'
 requirements:
   - class: ShellCommandRequirement
   - class: DockerRequirement
