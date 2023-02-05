@@ -39,8 +39,8 @@ arguments:
       }
 requirements:
   - class: ShellCommandRequirement
-  - class: DockerRequirement
-    dockerPull: 'ghcr.io/sagnikbanerjee15/dockerized_tools_and_pipelines/scripts:0.0.1'
-  - class: InlineJavascriptRequirement
   - class: ScatterFeatureRequirement
   - class: StepInputExpressionRequirement
+  - class: DockerRequirement
+    dockerPull: 'sagnikbanerjee15/scripts:0.0.1'
+  - class: InlineJavascriptRequirement
