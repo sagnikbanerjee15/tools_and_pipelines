@@ -201,5 +201,5 @@ arguments:
 requirements:
   - class: ShellCommandRequirement
   - class: DockerRequirement
-    dockerPull: 'ghcr.io/sagnikbanerjee15/dockerized_tools_and_pipelines/star:2.7.9a'
+    dockerPull: 'sagnikbanerjee15/star:2.7.9a'
   - class: InlineJavascriptRequirement
