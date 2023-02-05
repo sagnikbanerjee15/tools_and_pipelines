@@ -73,7 +73,7 @@ arguments:
 requirements:
   - class: ShellCommandRequirement
   - class: DockerRequirement
-    dockerPull: 'sagnikbanerjee15/tools_and_pipelines/bowtie2:2.4.5'
+    dockerPull: 'sagnikbanerjee15/bowtie2:2.4.5'
   - class: InlineJavascriptRequirement
 stdout: bowtie2_align.output
 stderr: bowtie2_align.error
