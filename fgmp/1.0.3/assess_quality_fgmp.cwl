@@ -56,5 +56,5 @@ arguments:
 requirements:
   - class: ShellCommandRequirement
   - class: DockerRequirement
-    dockerPull: 'ghcr.io/sagnikbanerjee15/dockerized_tools_and_pipelines/fgmp:1.0.3'
+    dockerPull: 'sagnikbanerjee15/tools_and_pipelines/fgmp:1.0.3'
   - class: InlineJavascriptRequirement

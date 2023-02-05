@@ -77,13 +77,23 @@ def main():
                         if "ghcr" in docker_hub:
                             pass
                             # cmd = f"docker build -t {docker_hub}/{tool.lower()}:{version} . > {options.error_directory}/{tool}:{version}_docker_build.output 2> {options.error_directory}/{tool}:{version}_docker_build.error"
+                        
+                        # Create the docker image
                         cmd = f"date > marker && docker build -t {docker_hub}/{tool.lower()}:{version} ."
                         print( f"Building {tool} {version}. Executing command - {cmd} from {os.getcwd()}" )
                         sys.stdout.flush()
                         os.system( cmd )
+                        # Push the docker image to docker hub
+                        cmd = f"docker push {docker_hub}/{tool.lower()}:{version}"
+                        print( cmd )
+                        sys.stdout.flush()
+                        os.system( cmd )
+                        # Remove the docker image from local file
+                        cmd = f"docker rmi {docker_hub}/{tool.lower()}:{version} "
+                        os.system(cmd)
 
             os.chdir( f"{current_directory}" )
-
+    """
     # Perform push operation for each kind of hub
     github_token = ''.join("ghp_jphGeSFxg9kAPXeREMOVETHISEsmOX2EmK8tk4EU0lrpvq".split("REMOVETHIS"))
     for docker_hub in options.docker_hub:
@@ -99,7 +109,7 @@ def main():
                     print( cmd )
                     os.system( cmd )
                     sys.stdout.flush()
-
+    """
 
 if __name__ == "__main__":
     main()
