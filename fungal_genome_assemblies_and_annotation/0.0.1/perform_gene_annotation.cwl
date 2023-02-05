@@ -89,6 +89,8 @@ steps:
         source: raw_input_files_pair1
       - id: mate2
         source: raw_input_files_pair2
+      - id: threads
+        source: threads
     out:
       - id: spades_assembly
     run: ../../spades/3.15.5/assemble.cwl
