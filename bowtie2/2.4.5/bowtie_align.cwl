@@ -75,7 +75,7 @@ arguments:
     shellQuote: false
     valueFrom: |-
       ${
-          return "bowtie-build --threads " + inputs.threads + " " + inputs.reference.path + " bowtie_index && bowtie"
+          return "bowtie2-build --threads " + inputs.threads + " " + inputs.reference.path + " bowtie_index && bowtie"
       }
 requirements:
   - class: ShellCommandRequirement
