@@ -46,6 +46,10 @@ outputs:
     type: File
     outputBinding:
       glob: '*output'
+  - id: error
+    type: File
+    outputBinding:
+      glob: '*error'
 label: bowtie_align
 arguments:
   - position: 0

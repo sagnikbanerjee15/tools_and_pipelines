@@ -32,6 +32,12 @@ outputs:
     type: File
     'sbg:x': 820.0509033203125
     'sbg:y': 215
+  - id: error
+    outputSource:
+      - bowtie_align/error
+    type: File
+    'sbg:x': 817.8125
+    'sbg:y': 425.5
 steps:
   - id: bowtie_align
     in:
@@ -49,6 +55,7 @@ steps:
     out:
       - id: aligned_samfile
       - id: log
+      - id: error
     run: ./bowtie_align.cwl
     label: bowtie_align
     'sbg:x': 567.5421142578125
