@@ -74,7 +74,7 @@ arguments:
     shellQuote: false
     valueFrom: |-
       ${
-          return "cp " + inputs.index.path + " . && bowtie"
+          return "cp " + inputs.index.path + "* . && bowtie"
       }
 requirements:
   - class: ShellCommandRequirement
