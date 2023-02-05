@@ -53,7 +53,7 @@ arguments:
 requirements:
   - class: ShellCommandRequirement
   - class: DockerRequirement
-    dockerPull: 'sagnikbanerjee15//star:2.7.9a'
+    dockerPull: 'sagnikbanerjee15/star:2.7.9a'
   - class: InlineJavascriptRequirement
 stdout: star_index_generation.output
 stderr: star_index_generation.error
