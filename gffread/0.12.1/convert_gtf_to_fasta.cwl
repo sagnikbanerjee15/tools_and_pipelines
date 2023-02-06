@@ -7,15 +7,8 @@ baseCommand: []
 inputs:
   - id: reference
     type: File
-    inputBinding:
-      position: 1
-      prefix: '-g'
-      shellQuote: false
   - id: gtf
     type: File
-    inputBinding:
-      position: 1
-      shellQuote: false
 outputs:
   - id: transcripts_fasta
     type: File
@@ -35,7 +28,7 @@ arguments:
     shellQuote: false
     valueFrom: |-
       ${
-          return "cp "+inputs.reference.path +". && gffread "
+          return "cp "+inputs.reference.path +" . && gffread "+ inputs.gtf.path+" -g "+inputs.reference.basename
       }
 requirements:
   - class: ShellCommandRequirement
