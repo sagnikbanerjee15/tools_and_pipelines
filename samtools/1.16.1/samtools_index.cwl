@@ -84,6 +84,6 @@ requirements:
   - class: InlineJavascriptRequirement
 hints:
   - class: DockerRequirement
-    dockerPull: 'ghcr.io/sagnikbanerjee15/dockerized_tools_and_pipelines/samtools:1.16.1'
+    dockerPull: 'sagnikbanerjee15/samtools:1.16.1'
 stdout: samtools_index.output
 stderr: samtools_index.error
