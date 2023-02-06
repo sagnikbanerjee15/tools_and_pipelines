@@ -134,5 +134,5 @@ arguments:
 requirements:
   - class: ShellCommandRequirement
   - class: DockerRequirement
-    dockerPull: 'ghcr.io/sagnikbanerjee15/dockerized_tools_and_pipelines/minimap2:2.24'
+    dockerPull: 'sagnikbanerjee15/minimap2:2.24'
   - class: InlineJavascriptRequirement
