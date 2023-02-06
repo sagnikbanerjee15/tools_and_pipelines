@@ -39,14 +39,6 @@ arguments:
       ${
           return "-@ " + inputs.threads
       }
-  - position: 7
-    prefix: ''
-    shellQuote: false
-    valueFrom: |-
-      ${
-          if(inputs.cai_index)
-              return "-c"
-      }
   - position: 8
     prefix: ''
     shellQuote: false
