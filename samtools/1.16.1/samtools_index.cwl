@@ -33,9 +33,12 @@ outputs:
 label: samtools_index
 arguments:
   - position: 6
-    prefix: '-@'
+    prefix: ''
     shellQuote: false
-    valueFrom: $(inputs.threads)
+    valueFrom: |-
+      ${
+          return "-@ " + inputs.threads
+      }
   - position: 7
     prefix: ''
     valueFrom: |-
