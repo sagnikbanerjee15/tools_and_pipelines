@@ -59,8 +59,8 @@ arguments:
       }
 requirements:
   - class: ShellCommandRequirement
-  - class: InlineJavascriptRequirement
   - class: DockerRequirement
     dockerPull: 'sagnikbanerjee15/samtools:1.16.1'
+  - class: InlineJavascriptRequirement
 stdout: samtools_index.output
 stderr: samtools_index.error
