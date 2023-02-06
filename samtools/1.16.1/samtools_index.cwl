@@ -41,6 +41,7 @@ arguments:
       }
   - position: 7
     prefix: ''
+    shellQuote: false
     valueFrom: |-
       ${
           if(inputs.cai_index)
