@@ -50,7 +50,11 @@ arguments:
   - position: 8
     prefix: ''
     shellQuote: false
-    valueFrom: $(inputs.bamfilename.basename)
+    valueFrom: |-
+      ${
+          return " " + inputs.bamfilename.basename
+          
+      }
   - position: 0
     prefix: ''
     shellQuote: false
