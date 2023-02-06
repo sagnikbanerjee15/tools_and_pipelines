@@ -3,8 +3,7 @@ cwlVersion: v1.0
 $namespaces:
   sbg: 'https://www.sevenbridges.com/'
 id: convert_gtf_to_fasta
-baseCommand:
-  - gffread
+baseCommand: []
 inputs:
   - id: reference
     type: File
@@ -30,6 +29,13 @@ arguments:
     valueFrom: |-
       ${
           return "-w transcripts.fasta"
+      }
+  - position: 0
+    prefix: ''
+    shellQuote: false
+    valueFrom: |-
+      ${
+          return "cp "+inputs.reference.path +". && gffread "
       }
 requirements:
   - class: ShellCommandRequirement
