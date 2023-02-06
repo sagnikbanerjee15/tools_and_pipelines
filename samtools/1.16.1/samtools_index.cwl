@@ -3,14 +3,10 @@ cwlVersion: v1.0
 $namespaces:
   sbg: 'https://www.sevenbridges.com/'
 id: samtools_index
-baseCommand:
-  - ln
-  - '-s'
+baseCommand: []
 inputs:
   - id: bamfilename
     type: File
-    inputBinding:
-      position: 1
     doc: Bam file name
   - 'sbg:toolDefaultValue': '1'
     id: threads
@@ -36,22 +32,6 @@ outputs:
       glob: '*.error'
 label: samtools_index
 arguments:
-  - position: 2
-    prefix: ''
-    shellQuote: false
-    valueFrom: $(inputs.bamfilename.basename)
-  - position: 3
-    prefix: ''
-    shellQuote: false
-    valueFrom: '&&'
-  - position: 4
-    prefix: ''
-    shellQuote: false
-    valueFrom: samtools
-  - position: 5
-    prefix: ''
-    shellQuote: false
-    valueFrom: index
   - position: 6
     prefix: '-@'
     shellQuote: false
@@ -67,18 +47,13 @@ arguments:
     prefix: ''
     shellQuote: false
     valueFrom: $(inputs.bamfilename.basename)
-  - position: 9
+  - position: 0
     prefix: ''
     shellQuote: false
-    valueFrom: '&&'
-  - position: 10
-    prefix: ''
-    shellQuote: false
-    valueFrom: rm
-  - position: 11
-    prefix: ''
-    shellQuote: false
-    valueFrom: $(inputs.bamfilename.basename)
+    valueFrom: |-
+      ${
+          return "cp "+inputs.bamfilename.path+" . && samtools index "
+      }
 requirements:
   - class: ShellCommandRequirement
   - class: InlineJavascriptRequirement
