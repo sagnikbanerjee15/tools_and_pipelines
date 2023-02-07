@@ -38,7 +38,7 @@ outputs:
   - id: spades_assembly_file
     type: File
     outputBinding:
-      glob: spades_assembly/*transcripts.fasta
+      glob: spades_assembly/transcripts.fasta*
 label: spades_assemble
 arguments:
   - position: 0
