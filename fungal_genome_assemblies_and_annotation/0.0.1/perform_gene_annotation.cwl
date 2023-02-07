@@ -32,14 +32,14 @@ outputs:
     outputSource:
       - star_generate_index_and_align/splice_junctions
     type: File
-    'sbg:x': 560.2098388671875
-    'sbg:y': 121
+    'sbg:x': 808.548828125
+    'sbg:y': 77.8752670288086
   - id: stringtie_assembly_only_short_reads
     outputSource:
       - stringtie_assemble/stringtie_assembly
     type: File
-    'sbg:x': 894.2098388671875
-    'sbg:y': 174.5
+    'sbg:x': 809.4474487304688
+    'sbg:y': -188.34259033203125
   - id: spades_assembly_file
     outputSource:
       - spades_assemble/spades_assembly_file
