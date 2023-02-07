@@ -2,11 +2,11 @@ class: CommandLineTool
 cwlVersion: v1.0
 $namespaces:
   sbg: 'https://www.sevenbridges.com/'
-id: stringtie_assemble
+id: stringtie_assemble_short_and_long_reads
 baseCommand:
   - stringtie
 inputs:
-  - id: reference_aligned_file
+  - id: reference_aligned_short_reads_file
     type: File
     inputBinding:
       position: 1
@@ -22,19 +22,31 @@ inputs:
       position: 3
       prefix: '--ref'
       shellQuote: false
+  - id: reference_aligned_long_reads_file
+    type: File
+    inputBinding:
+      position: 2
+      shellQuote: false
 outputs:
   - id: stringtie_assembly
     type: File
     outputBinding:
       glob: '*gtf'
-label: stringtie_assemble
+label: stringtie_assemble_short_and_long_reads
 arguments:
   - position: 4
     prefix: ''
     shellQuote: false
     valueFrom: |-
       ${
-          return "-o stringtie_assembled_only_short_reads.gtf"
+          return "-o stringtie_assembled_short_and_long_reads.gtf"
+      }
+  - position: 5
+    prefix: ''
+    shellQuote: false
+    valueFrom: |-
+      ${
+          return "--mix"
       }
 requirements:
   - class: ShellCommandRequirement

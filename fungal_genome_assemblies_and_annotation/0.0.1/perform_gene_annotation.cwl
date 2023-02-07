@@ -8,44 +8,50 @@ inputs:
   - id: threads
     type: int
     'sbg:x': 0
-    'sbg:y': 0
+    'sbg:y': 81.5
   - id: reference
     type: File
     'sbg:x': 0
-    'sbg:y': 107
+    'sbg:y': 188.5
   - id: raw_input_files_pair1
     type: File
     'sbg:x': 0
-    'sbg:y': 321
+    'sbg:y': 402.5
   - id: raw_input_files_pair2
     type: File?
     'sbg:x': 0
-    'sbg:y': 214
+    'sbg:y': 295.5
 outputs:
   - id: log
     outputSource:
       - star_generate_index_and_align/log
     type: File
     'sbg:x': 560.2098388671875
-    'sbg:y': 267.5
+    'sbg:y': 470
   - id: splice_junctions
     outputSource:
       - star_generate_index_and_align/splice_junctions
     type: File
     'sbg:x': 560.2098388671875
-    'sbg:y': 160.5
-  - id: stringtie_assembly
+    'sbg:y': 121
+  - id: stringtie_assembly_only_short_reads
     outputSource:
       - stringtie_assemble/stringtie_assembly
     type: File
     'sbg:x': 894.2098388671875
-    'sbg:y': 160.5
-  - id: spades_assembly
+    'sbg:y': 174.5
+  - id: spades_assembly_file
     outputSource:
-      - spades_assemble/spades_assembly
-    type: Directory
-    'sbg:x': 762.9091186523438
-    'sbg:y': -303.7312316894531
+      - spades_assemble/spades_assembly_file
+    type: File
+    'sbg:x': 560.2098388671875
+    'sbg:y': 228
+  - id: stringtie_assembly_lon_reads_and_short_reads
+    outputSource:
+      - stringtie_assemble_short_and_long_reads/stringtie_assembly
+    type: File
+    'sbg:x': 1928.4720458984375
+    'sbg:y': 242
 steps:
   - id: star_generate_index_and_align
     in:
@@ -66,7 +72,7 @@ steps:
     run: ../../star/2.7.9a/star_generate_index_and_align.cwl
     label: star_generate_index_and_align
     'sbg:x': 218.984375
-    'sbg:y': 132.5
+    'sbg:y': 146.5
   - id: stringtie_assemble
     in:
       - id: reference_aligned_file
@@ -80,7 +86,7 @@ steps:
     run: ../../stringtie/2.2.1/stringtie_assemble.cwl
     label: stringtie_assemble
     'sbg:x': 560.2098388671875
-    'sbg:y': 39.5
+    'sbg:y': 0
   - id: spades_assemble
     in:
       - id: rna
@@ -92,10 +98,88 @@ steps:
       - id: threads
         source: threads
     out:
-      - id: spades_assembly
+      - id: spades_assembly_directory
+      - id: spades_assembly_file
     run: ../../spades/3.15.5/assemble.cwl
     label: spades_assemble
-    'sbg:x': 631
-    'sbg:y': -183
+    'sbg:x': 218.984375
+    'sbg:y': 295.5
+  - id: stringtie_assemble_short_and_long_reads
+    in:
+      - id: reference_aligned_short_reads_file
+        source: star_generate_index_and_align/alignment_file
+      - id: reference
+        source: reference
+      - id: reference_aligned_long_reads_file
+        source: samtools_sort/output_bam
+    out:
+      - id: stringtie_assembly
+    run: ../../stringtie/2.2.1/stringtie_assemble_short_and_long_reads.cwl
+    label: stringtie_assemble_short_and_long_reads
+    'sbg:x': 1530.0657958984375
+    'sbg:y': 228
+  - id: minimap2
+    in:
+      - id: max_secondary_alignments
+        default: 1000
+      - id: output_format
+        default: SAM
+      - id: reference
+        source: reference
+      - id: raw_reads_filename
+        source: spades_assemble/spades_assembly_file
+      - id: cs_tag
+        default: true
+      - id: output_MD_tag
+        default: true
+      - id: eqx
+        default: true
+      - id: threads
+        source: threads
+      - id: use_soft_clipping_for_secondary_alignments
+        default: true
+    out:
+      - id: output_sam
+      - id: output_paf
+    run: ../../minimap2/2.24/minimap2.cwl
+    label: minimap2
+    'sbg:x': 560.2098388671875
+    'sbg:y': 349
+  - id: samtools_view
+    in:
+      - id: input_alignment
+        source: minimap2/output_sam
+      - id: output_format
+        default: BAM
+      - id: include_header
+        default: true
+      - id: threads
+        source: threads
+    out:
+      - id: output_bam
+      - id: output_sam
+      - id: output_cram
+    run: ../../samtools/1.16.1/samtools_view.cwl
+    label: samtools view
+    'sbg:x': 894.2098388671875
+    'sbg:y': 295.5
+  - id: samtools_sort
+    in:
+      - id: input_alignment
+        source: samtools_view/output_bam
+      - id: output_format
+        default: BAM
+      - id: threads
+        source: threads
+    out:
+      - id: output_bam
+      - id: output_sam
+      - id: output_cram
+      - id: stdout
+      - id: stderr
+    run: ../../samtools/1.16.1/samtools_sort.cwl
+    label: samtools sort
+    'sbg:x': 1241.6629638671875
+    'sbg:y': 214
 requirements:
   - class: SubworkflowFeatureRequirement
