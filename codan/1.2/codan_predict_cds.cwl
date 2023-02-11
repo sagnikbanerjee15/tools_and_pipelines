@@ -41,6 +41,14 @@ outputs:
     outputBinding:
       glob: '*CodAn_output'
 label: codan_predict_cds
+arguments:
+  - position: 0
+    prefix: ''
+    shellQuote: false
+    valueFrom: |-
+      ${
+          return "-o CodAn_output"
+      }
 requirements:
   - class: ShellCommandRequirement
   - class: DockerRequirement
