@@ -35,6 +35,10 @@ inputs:
       position: 0
       prefix: '-m'
       shellQuote: false
+      valueFrom: |-
+        ${
+            return "/software/CodAn/models/"+inputs.model
+        }
 outputs:
   - id: output_directory
     type: Directory
@@ -50,7 +54,7 @@ arguments:
           return "-o CodAn_output"
       }
 requirements:
-  - class: InlineJavascriptRequirement
   - class: ShellCommandRequirement
   - class: DockerRequirement
     dockerPull: 'sagnikbanerjee15/codan:1.2'
+  - class: InlineJavascriptRequirement
