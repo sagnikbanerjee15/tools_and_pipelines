@@ -33,6 +33,7 @@ inputs:
       name: model
     inputBinding:
       position: 0
+      prefix: '-m'
       shellQuote: false
 outputs:
   - id: output_directory
