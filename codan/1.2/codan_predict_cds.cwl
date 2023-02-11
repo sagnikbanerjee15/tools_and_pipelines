@@ -50,6 +50,7 @@ arguments:
           return "-o CodAn_output"
       }
 requirements:
+  - class: InlineJavascriptRequirement
   - class: ShellCommandRequirement
   - class: DockerRequirement
     dockerPull: 'sagnikbanerjee15/codan:1.2'
