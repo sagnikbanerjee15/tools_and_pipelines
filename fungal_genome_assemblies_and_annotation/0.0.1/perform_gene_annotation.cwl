@@ -44,14 +44,14 @@ outputs:
     outputSource:
       - spades_assemble/spades_assembly_file
     type: File
-    'sbg:x': 560.2098388671875
-    'sbg:y': 228
+    'sbg:x': 463.33428955078125
+    'sbg:y': 665.1925659179688
   - id: stringtie_assembly_lon_reads_and_short_reads
     outputSource:
       - stringtie_assemble_short_and_long_reads/stringtie_assembly
     type: File
-    'sbg:x': 1928.4720458984375
-    'sbg:y': 242
+    'sbg:x': 1697.3204345703125
+    'sbg:y': 404.5741271972656
 steps:
   - id: star_generate_index_and_align
     in:
