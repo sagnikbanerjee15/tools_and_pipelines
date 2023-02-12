@@ -32,6 +32,13 @@ arguments:
       ${
           return "--gtf_file_with_cds with_cds.gtf"
       }
+  - position: 0
+    prefix: ''
+    shellQuote: false
+    valueFrom: |-
+      ${
+          return "-b /swissprot"
+      }
 requirements:
   - class: ShellCommandRequirement
   - class: DockerRequirement
