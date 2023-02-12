@@ -53,6 +53,13 @@ arguments:
       ${
           return "-o CodAn_output"
       }
+  - position: 0
+    prefix: ''
+    shellQuote: false
+    valueFrom: |-
+      ${
+          return "-b /swissprot"
+      }
 requirements:
   - class: ShellCommandRequirement
   - class: DockerRequirement
