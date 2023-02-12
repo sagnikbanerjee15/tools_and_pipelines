@@ -40,10 +40,10 @@ inputs:
             return "/software/CodAn/models/"+inputs.model
         }
 outputs:
-  - id: output_directory
-    type: Directory
+  - id: output_gtf
+    type: File
     outputBinding:
-      glob: '*CodAn_output'
+      glob: '*CodAn_output/annotation.gtf'
 label: codan_predict_cds
 arguments:
   - position: 0

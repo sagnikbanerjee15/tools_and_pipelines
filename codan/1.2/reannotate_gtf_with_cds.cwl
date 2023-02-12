@@ -33,11 +33,11 @@ inputs:
     'sbg:x': 0
     'sbg:y': 214
 outputs:
-  - id: output_directory
+  - id: output_with_cds
     outputSource:
-      - codan_predict_cds/output_directory
-    type: Directory
-    'sbg:x': 655.56884765625
+      - annotate_gtf_with_cds/output_with_cds
+    type: File
+    'sbg:x': 988.0015869140625
     'sbg:y': 160.5
 steps:
   - id: convert_gtf_to_fasta
@@ -61,9 +61,22 @@ steps:
       - id: model
         source: model
     out:
-      - id: output_directory
+      - id: output_gtf
     run: ./codan_predict_cds.cwl
     label: codan_predict_cds
-    'sbg:x': 373.0733947753906
+    'sbg:x': 373.0733642578125
     'sbg:y': 146.5
+  - id: annotate_gtf_with_cds
+    in:
+      - id: gtf_file_without_cds
+        source: gtf
+      - id: gtf_from_cds_prediction_program
+        source: codan_predict_cds/output_gtf
+    out:
+      - id: output_with_cds
+    run: >-
+      ../../fungal_genome_assemblies_and_annotation/0.0.1/annotate_gtf_with_cds.cwl
+    label: annotate_gtf_with_CDS
+    'sbg:x': 624.11572265625
+    'sbg:y': 153.5
 requirements: []
