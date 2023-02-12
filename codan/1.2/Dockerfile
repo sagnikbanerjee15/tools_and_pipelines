@@ -19,3 +19,5 @@ RUN mkdir /software && \
 	cd CodAn/models
 
 RUN cd /software/CodAn/models && for file in *zip; do unzip ${file}; done
+RUN wget https://ftp.ncbi.nlm.nih.gov/blast/db/swissprot.tar.gz && \
+	tar -xvzf swissprot.tar.gz

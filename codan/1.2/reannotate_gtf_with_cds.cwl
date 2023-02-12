@@ -39,6 +39,12 @@ outputs:
     type: File
     'sbg:x': 988.0015869140625
     'sbg:y': 160.5
+  - id: output_longest_ORF
+    outputSource:
+      - annotate_longest_orf/output_longest_ORF
+    type: File
+    'sbg:x': 990
+    'sbg:y': 350
 steps:
   - id: convert_gtf_to_fasta
     in:
@@ -79,4 +85,15 @@ steps:
     label: annotate_gtf_with_CDS
     'sbg:x': 624.11572265625
     'sbg:y': 153.5
+  - id: annotate_longest_orf
+    in:
+      - id: transcripts_fasta
+        source: convert_gtf_to_fasta/transcripts_fasta
+    out:
+      - id: output_longest_ORF
+    run: >-
+      ../../fungal_genome_assemblies_and_annotation/0.0.1/annotate_longest_orf.cwl
+    label: annotate_longest_ORF
+    'sbg:x': 636.0867309570312
+    'sbg:y': 349.5
 requirements: []
