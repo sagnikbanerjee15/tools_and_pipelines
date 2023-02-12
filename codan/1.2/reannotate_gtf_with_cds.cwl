@@ -33,18 +33,18 @@ inputs:
     'sbg:x': 0
     'sbg:y': 214
 outputs:
-  - id: output_with_cds
+  - id: output_with_cds_codan
     outputSource:
       - annotate_gtf_with_cds/output_with_cds
     type: File
     'sbg:x': 988.0015869140625
     'sbg:y': 160.5
-  - id: output_longest_ORF
+  - id: output_with_cds_longest_orf
     outputSource:
-      - annotate_longest_orf/output_longest_ORF
+      - annotate_gtf_with_cds_1/output_with_cds
     type: File
-    'sbg:x': 990
-    'sbg:y': 350
+    'sbg:x': 1166.095703125
+    'sbg:y': 482.5
 steps:
   - id: convert_gtf_to_fasta
     in:
@@ -96,4 +96,17 @@ steps:
     label: annotate_longest_ORF
     'sbg:x': 636.0867309570312
     'sbg:y': 349.5
+  - id: annotate_gtf_with_cds_1
+    in:
+      - id: gtf_file_without_cds
+        source: gtf
+      - id: gtf_from_cds_prediction_program
+        source: annotate_longest_orf/output_longest_ORF
+    out:
+      - id: output_with_cds
+    run: >-
+      ../../fungal_genome_assemblies_and_annotation/0.0.1/annotate_gtf_with_cds.cwl
+    label: annotate_gtf_with_CDS
+    'sbg:x': 1011.087158203125
+    'sbg:y': 503.5
 requirements: []
