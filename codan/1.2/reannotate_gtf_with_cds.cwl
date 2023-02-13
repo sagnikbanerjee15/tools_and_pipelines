@@ -84,6 +84,8 @@ steps:
         source: gtf
       - id: gtf_from_cds_prediction_program
         source: codan_predict_cds/output_gtf
+      - id: prepend_string_to_filename
+        default: codan
     out:
       - id: output_with_cds
     run: >-
@@ -108,6 +110,8 @@ steps:
         source: gtf
       - id: gtf_from_cds_prediction_program
         source: annotate_longest_orf/output_longest_ORF
+      - id: prepend_string_to_filename
+        default: longest_orf
     out:
       - id: output_with_cds
     run: >-

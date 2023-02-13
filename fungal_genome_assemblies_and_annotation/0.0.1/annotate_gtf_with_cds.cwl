@@ -18,6 +18,8 @@ inputs:
       position: 0
       prefix: '--gtf_from_CDS_prediction'
       shellQuote: false
+  - id: prepend_string_to_filename
+    type: string?
 outputs:
   - id: output_with_cds
     type: File
@@ -30,7 +32,7 @@ arguments:
     shellQuote: false
     valueFrom: |-
       ${
-          return "--gtf_file_with_cds with_cds.gtf"
+          return "--gtf_file_with_cds "+inputs.prepend_string_to_filename+"_with_cds.gtf"
       }
 requirements:
   - class: ShellCommandRequirement
