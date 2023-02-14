@@ -14,11 +14,7 @@ inputs:
       prefix: '-num_threads'
       shellQuote: false
   - id: blast_db
-    type:
-      type: enum
-      symbols:
-        - nt
-      name: blast_db
+    type: Directory
 outputs:
   - id: blast_results
     type: File
@@ -32,19 +28,9 @@ arguments:
     valueFrom: |-
       ${
           if(inputs.blast_db=="nt")
-              blast_db_loc = "/blast_databases/nt"
+              blast_db_loc = inputs.blast_db.path + "/nt"
           
-          return "&& blastn -db "+blast_db_loc+" -out blastn_results -query "+inputs.query.path + " -outfmt '7 qseqid sseqid qlen qstart qend sstart send evalue bitscore length pident qcovs qlen slen' "
-      }
-  - position: 0
-    prefix: ''
-    shellQuote: false
-    valueFrom: |-
-      ${
-          if(inputs.blast_db=="nt")
-          {
-              return "wget -b \"ftp://ftp.ncbi.nlm.nih.gov/blast/db/nt.??.tar.gz\" -P /blast_databases"
-          }
+          return "blastn -db "+blast_db_loc+" -out blastn_results -query "+inputs.query.path + " -outfmt '7 qseqid sseqid qlen qstart qend sstart send evalue bitscore length pident qcovs qlen slen' "
       }
 requirements:
   - class: ShellCommandRequirement
