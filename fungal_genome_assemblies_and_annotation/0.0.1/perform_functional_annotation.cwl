@@ -46,12 +46,6 @@ outputs:
     type: Directory
     'sbg:x': 458.84375
     'sbg:y': -63.988067626953125
-  - id: output_dir_deeploc
-    outputSource:
-      - find_localizing_region_deeploc/output_dir_deeploc
-    type: Directory
-    'sbg:x': 453.84375
-    'sbg:y': 189
   - id: localizer_output_directory
     outputSource:
       - find_localizing_region_localizer/localizer_output_directory
@@ -93,16 +87,6 @@ steps:
     label: find_signal_peptides
     'sbg:x': 156.28125
     'sbg:y': 86
-  - id: find_localizing_region_deeploc
-    in:
-      - id: peptide_fasta
-        source: convert_gtf_to_peptide_sequences/peptide_fasta
-    out:
-      - id: output_dir_deeploc
-    run: ../../deeploc/2/find_localizing_region_deeploc.cwl
-    label: find_localizing_region_deeploc
-    'sbg:x': 157.22752380371094
-    'sbg:y': 347.508544921875
   - id: find_localizing_region_localizer
     in:
       - id: peptide_fasta
