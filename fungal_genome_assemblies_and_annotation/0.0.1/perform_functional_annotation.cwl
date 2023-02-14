@@ -5,18 +5,18 @@ label: perform_functional_annotation
 $namespaces:
   sbg: 'https://www.sevenbridges.com/'
 inputs:
-  - id: peptide_fasta
-    type: File
-    'sbg:x': -223.4106903076172
-    'sbg:y': 321
   - id: threads
     type: int
-    'sbg:x': -235.00341796875
-    'sbg:y': 134.59271240234375
-  - id: transcripts_fasta
+    'sbg:x': -937.1478881835938
+    'sbg:y': 233.43003845214844
+  - id: reference
     type: File
-    'sbg:x': -220.73947143554688
-    'sbg:y': 495.32196044921875
+    'sbg:x': -931.5553588867188
+    'sbg:y': 409.3693542480469
+  - id: gtf
+    type: File
+    'sbg:x': -926.053466796875
+    'sbg:y': 571.1797485351562
 outputs:
   - id: predicted_nonCSEPs
     outputSource:
@@ -64,7 +64,7 @@ steps:
   - id: find_cseps_effectorp
     in:
       - id: peptide_fasta
-        source: peptide_fasta
+        source: convert_gtf_to_peptide_sequences/peptide_fasta
       - id: mode
         default: FUNGUS
     out:
@@ -78,7 +78,7 @@ steps:
   - id: find_signal_peptides
     in:
       - id: peptide_fasta
-        source: peptide_fasta
+        source: convert_gtf_to_peptide_sequences/peptide_fasta
       - id: threads
         source: threads
       - id: organism
@@ -92,7 +92,7 @@ steps:
   - id: find_localizing_region_deeploc
     in:
       - id: peptide_fasta
-        source: peptide_fasta
+        source: convert_gtf_to_peptide_sequences/peptide_fasta
     out:
       - id: output_dir_deeploc
     run: ../../deeploc/2/find_localizing_region_deeploc.cwl
@@ -102,7 +102,7 @@ steps:
   - id: find_localizing_region_localizer
     in:
       - id: peptide_fasta
-        source: peptide_fasta
+        source: convert_gtf_to_peptide_sequences/peptide_fasta
     out:
       - id: localizer_output_directory
     run: ../../localizer/1.0.5/find_localizing_region_localizer.cwl
@@ -112,7 +112,7 @@ steps:
   - id: blastn_against_ncbi_db
     in:
       - id: query
-        source: transcripts_fasta
+        source: convert_gtf_to_fasta/transcripts_fasta
       - id: threads
         source: threads
       - id: blast_db
@@ -123,4 +123,28 @@ steps:
     label: blastn_against_ncbi_db
     'sbg:x': 152.5390625
     'sbg:y': 710.5119018554688
+  - id: convert_gtf_to_peptide_sequences
+    in:
+      - id: reference
+        source: reference
+      - id: gtf
+        source: gtf
+    out:
+      - id: peptide_fasta
+    run: ../../gffread/0.12.1/convert_gtf_to_peptide_sequences.cwl
+    label: convert_gtf_to_peptide_sequences
+    'sbg:x': -505
+    'sbg:y': 296.3310546875
+  - id: convert_gtf_to_fasta
+    in:
+      - id: reference
+        source: reference
+      - id: gtf
+        source: gtf
+    out:
+      - id: transcripts_fasta
+    run: ../../gffread/0.12.1/convert_gtf_to_fasta.cwl
+    label: convert_gtf_to_fasta
+    'sbg:x': -469.1376647949219
+    'sbg:y': 539
 requirements: []
