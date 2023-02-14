@@ -115,6 +115,8 @@ steps:
         source: transcripts_fasta
       - id: threads
         source: threads
+      - id: blast_db
+        default: nt
     out:
       - id: blast_results
     run: ../../ncbi_blast/2.13.0/blastn_against_ncbi_db.cwl
