@@ -4,7 +4,8 @@ $namespaces:
   sbg: 'https://www.sevenbridges.com/'
 id: find_cseps_effectorp
 baseCommand:
-  - python3 /softwares/EffectorP-3.0-3.0.0-beta/EffectorP.py
+  - python3
+  - /softwares/EffectorP-3.0-3.0.0-beta/EffectorP.py
 inputs:
   - id: peptide_fasta
     type: File
