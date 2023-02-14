@@ -17,6 +17,10 @@ inputs:
     type: File
     'sbg:x': -926.053466796875
     'sbg:y': 571.1797485351562
+  - id: blast_db
+    type: Directory
+    'sbg:x': -913.62939453125
+    'sbg:y': 779.5615844726562
 outputs:
   - id: predicted_nonCSEPs
     outputSource:
@@ -117,6 +121,7 @@ steps:
         source: threads
       - id: blast_db
         default: nt
+        source: blast_db
     out:
       - id: blast_results
     run: ../../ncbi_blast/2.13.0/blastn_against_ncbi_db.cwl
