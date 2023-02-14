@@ -27,10 +27,8 @@ arguments:
     shellQuote: false
     valueFrom: |-
       ${
-          if(inputs.blast_db=="nt")
-              blast_db_loc = inputs.blast_db.path + "/nt"
           
-          return "blastn -db "+blast_db_loc+" -out blastn_results -query "+inputs.query.path + " -outfmt '7 qseqid sseqid qlen qstart qend sstart send evalue bitscore length pident qcovs qlen slen' "
+          return "blastn -db "+inputs.blast_db.path+" -out blastn_results -query "+inputs.query.path + " -outfmt '7 qseqid sseqid qlen qstart qend sstart send evalue bitscore length pident qcovs qlen slen' "
       }
 requirements:
   - class: ShellCommandRequirement
