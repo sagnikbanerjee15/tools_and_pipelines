@@ -4,7 +4,8 @@ $namespaces:
   sbg: 'https://www.sevenbridges.com/'
 id: find_localizing_region_localizer
 baseCommand:
-  - python3 /software/LOCALIZER-1.0.5/Scripts/LOCALIZER.py
+  - python3
+  - /software/LOCALIZER-1.0.5/Scripts/LOCALIZER.py
 inputs:
   - id: peptide_fasta
     type: File
@@ -34,8 +35,7 @@ arguments:
           return "-o "+inputs.peptide_fasta.nameroot+"_localizer_output"
       }
 requirements:
-  - class: InlineJavascriptRequirement
   - class: ShellCommandRequirement
   - class: DockerRequirement
     dockerPull: 'sagnikbanerjee15/localizer:1.0.5'
-    
+  - class: InlineJavascriptRequirement
