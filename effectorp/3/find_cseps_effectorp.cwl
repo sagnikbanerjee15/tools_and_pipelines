@@ -68,5 +68,5 @@ arguments:
 requirements:
   - class: ShellCommandRequirement
   - class: DockerRequirement
-    dockerPull: 'sagnikbanerjee15/effectorp:3.0'
+    dockerPull: 'sagnikbanerjee15/effectorp:3'
   - class: InlineJavascriptRequirement
