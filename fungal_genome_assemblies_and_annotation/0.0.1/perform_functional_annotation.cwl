@@ -73,8 +73,8 @@ steps:
       - id: predicted_nonCSEPs
     run: ../../effectorp/3/find_cseps_effectorp.cwl
     label: find_cseps_effectorp
-    'sbg:x': 156.28125
-    'sbg:y': 428
+    'sbg:x': 158.45506286621094
+    'sbg:y': 495.51422119140625
   - id: find_signal_peptides
     in:
       - id: peptide_fasta
@@ -97,8 +97,8 @@ steps:
       - id: output_dir_deeploc
     run: ../../deeploc/2/find_localizing_region_deeploc.cwl
     label: find_localizing_region_deeploc
-    'sbg:x': 156.28125
-    'sbg:y': 307
+    'sbg:x': 157.22752380371094
+    'sbg:y': 347.508544921875
   - id: find_localizing_region_localizer
     in:
       - id: peptide_fasta
@@ -107,8 +107,8 @@ steps:
       - id: localizer_output_directory
     run: ../../localizer/1.0.5/find_localizing_region_localizer.cwl
     label: find_localizing_region_localizer
-    'sbg:x': 156.28125
-    'sbg:y': 200
+    'sbg:x': 163.3651885986328
+    'sbg:y': 234.37088012695312
   - id: blastn_against_ncbi_db
     in:
       - id: query
