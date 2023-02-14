@@ -30,6 +30,7 @@ inputs:
     inputBinding:
       position: 0
       prefix: '--organism'
+      shellQuote: false
 outputs:
   - id: outdir
     type: Directory
