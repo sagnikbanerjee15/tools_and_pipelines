@@ -58,6 +58,12 @@ outputs:
     type: File
     'sbg:x': 472.53912353515625
     'sbg:y': 896.5029907226562
+  - id: transcripts_fasta
+    outputSource:
+      - convert_gtf_to_fasta/transcripts_fasta
+    type: File
+    'sbg:x': -314.5349426269531
+    'sbg:y': 412.100830078125
 steps:
   - id: find_cseps_effectorp
     in:
@@ -100,7 +106,7 @@ steps:
   - id: blastp_against_ncbi_db
     in:
       - id: query
-        source: convert_gtf_to_fasta/transcripts_fasta
+        source: convert_gtf_to_peptide_sequences/peptide_fasta
       - id: threads
         source: threads
       - id: blast_db
@@ -134,6 +140,6 @@ steps:
       - id: transcripts_fasta
     run: ../../gffread/0.12.1/convert_gtf_to_fasta.cwl
     label: convert_gtf_to_fasta
-    'sbg:x': -469.1376647949219
-    'sbg:y': 539
+    'sbg:x': -529.6370849609375
+    'sbg:y': 591.1478881835938
 requirements: []
