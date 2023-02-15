@@ -54,7 +54,7 @@ outputs:
     'sbg:y': 69
   - id: blast_results
     outputSource:
-      - blastn_against_ncbi_db/blast_results
+      - blastp_against_ncbi_db/blast_results
     type: File
     'sbg:x': 472.53912353515625
     'sbg:y': 896.5029907226562
@@ -97,7 +97,7 @@ steps:
     label: find_localizing_region_localizer
     'sbg:x': 163.3651885986328
     'sbg:y': 234.37088012695312
-  - id: blastn_against_ncbi_db
+  - id: blastp_against_ncbi_db
     in:
       - id: query
         source: convert_gtf_to_fasta/transcripts_fasta
@@ -108,8 +108,8 @@ steps:
         source: blast_db
     out:
       - id: blast_results
-    run: ../../ncbi_blast/2.13.0/blastn_against_ncbi_db.cwl
-    label: blastn_against_ncbi_db
+    run: ../../ncbi_blast/2.13.0/blastp_against_ncbi_db.cwl
+    label: blastp_against_ncbi_db
     'sbg:x': 152.5390625
     'sbg:y': 710.5119018554688
   - id: convert_gtf_to_peptide_sequences
