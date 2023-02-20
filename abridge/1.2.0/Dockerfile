@@ -12,15 +12,7 @@ RUN apt-get -y update
 RUN apt-get -y install --fix-missing git python3 less vim wget time zlib1g zlib1g-dev lzma-dev \
 	libncurses5-dev libcurl4-nss-dev liblzma-dev libncursesw5-dev make unzip zip build-essential \
 	gcc g++ cmake ca-certificates libbz2-dev xz-utils htop autoconf automake binutils bison flex \
-	gettext libtool patch pkg-config p7zip-full p7zip pip perl libc6-dbg gdb valgrind
-RUN apt-get clean all
-
-# Install base utilities
-RUN apt-get update && \
-    apt-get install -y build-essential  && \
-    apt-get install -y wget && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
+	gettext libtool patch pkg-config p7zip-full p7zip pip perl libc6-dbg gdb valgrind 
 
 # Install miniconda
 ENV CONDA_DIR /opt/conda
@@ -46,6 +38,16 @@ ENV PATH=$PATH:/software/FCLQC/target/release
 # ZPAQ
 #######################################################################################################################################################################
 RUN conda install -c sbu-hpc -y zpaq=7.15
+
+#######################################################################################################################################################################
+# SPRING
+#######################################################################################################################################################################
+
+RUN conda config --add channels defaults && \
+	conda config --add channels bioconda && \
+	conda config --add channels conda-forge && \
+	conda install -y spring
+
 
 #######################################################################################################################################################################
 # SAMTOOLS
