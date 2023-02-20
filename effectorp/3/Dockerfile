@@ -36,5 +36,5 @@ RUN cd /softwares/EffectorP-3.0-${EFFECTORP_VERSION}-beta && \
 	unzip weka-3-8-4.zip && \
 	rm /softwares/v${EFFECTORP_VERSION}-beta.tar.gz
 	
-ENV PATH=$PATH:/softwares/EffectorP-${EFFECTORP_VERSION}-beta/
+ENV PATH=$PATH:/softwares/EffectorP-${EFFECTORP_VERSION}-${EFFECTORP_VERSION}.0-beta/
 

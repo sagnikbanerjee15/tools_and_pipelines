@@ -37,20 +37,38 @@ outputs:
     outputSource:
       - annotate_gtf_with_cds/output_with_cds
     type: File
-    'sbg:x': 1024.740478515625
-    'sbg:y': 214
+    'sbg:x': 805
+    'sbg:y': -177.99783325195312
   - id: output_with_cds_longest_orf
     outputSource:
       - annotate_gtf_with_cds_1/output_with_cds
     type: File
-    'sbg:x': 1024.740478515625
-    'sbg:y': 107
-  - id: output_longest_ORF
+    'sbg:x': 917
+    'sbg:y': 489
+  - id: peptide_fasta_codan
     outputSource:
-      - annotate_longest_orf/output_longest_ORF
+      - convert_gtf_to_peptide_sequences/peptide_fasta
     type: File
-    'sbg:x': 623.5733642578125
-    'sbg:y': 472.5
+    'sbg:x': 1133.2088623046875
+    'sbg:y': -171.99783325195312
+  - id: peptide_fasta_longest_orf
+    outputSource:
+      - convert_gtf_to_peptide_sequences_1/peptide_fasta
+    type: File
+    'sbg:x': 1167.2091064453125
+    'sbg:y': 211.00201416015625
+  - id: summary_codan
+    outputSource:
+      - generate_summary_statistics_from_peptides/summary
+    type: File
+    'sbg:x': 1369
+    'sbg:y': -33
+  - id: summary_longest_orf
+    outputSource:
+      - generate_summary_statistics_from_peptides_1/summary
+    type: File
+    'sbg:x': 1410.2000732421875
+    'sbg:y': 334.00201416015625
 steps:
   - id: convert_gtf_to_fasta
     in:
@@ -91,8 +109,8 @@ steps:
     run: >-
       ../../fungal_genome_assemblies_and_annotation/0.0.1/annotate_gtf_with_cds.cwl
     label: annotate_gtf_with_CDS
-    'sbg:x': 660.8546142578125
-    'sbg:y': 214
+    'sbg:x': 613
+    'sbg:y': -114
   - id: annotate_longest_orf
     in:
       - id: transcripts_fasta
@@ -117,6 +135,52 @@ steps:
     run: >-
       ../../fungal_genome_assemblies_and_annotation/0.0.1/annotate_gtf_with_cds.cwl
     label: annotate_gtf_with_CDS
-    'sbg:x': 660.8546142578125
-    'sbg:y': 93
+    'sbg:x': 660
+    'sbg:y': 316
+  - id: convert_gtf_to_peptide_sequences
+    in:
+      - id: reference
+        source: reference
+      - id: gtf
+        source: annotate_gtf_with_cds/output_with_cds
+    out:
+      - id: peptide_fasta
+    run: ../../gffread/0.12.1/convert_gtf_to_peptide_sequences.cwl
+    label: convert_gtf_to_peptide_sequences
+    'sbg:x': 987
+    'sbg:y': -83
+  - id: convert_gtf_to_peptide_sequences_1
+    in:
+      - id: reference
+        source: reference
+      - id: gtf
+        source: annotate_gtf_with_cds_1/output_with_cds
+    out:
+      - id: peptide_fasta
+    run: ../../gffread/0.12.1/convert_gtf_to_peptide_sequences.cwl
+    label: convert_gtf_to_peptide_sequences
+    'sbg:x': 960.2091064453125
+    'sbg:y': 249.00201416015625
+  - id: generate_summary_statistics_from_peptides
+    in:
+      - id: peptide_fasta
+        source: convert_gtf_to_peptide_sequences/peptide_fasta
+    out:
+      - id: summary
+    run: >-
+      ../../fungal_genome_assemblies_and_annotation/0.0.1/generate_summary_statistics_from_peptides.cwl
+    label: generate_summary_statistics_from_peptides
+    'sbg:x': 1210
+    'sbg:y': 18
+  - id: generate_summary_statistics_from_peptides_1
+    in:
+      - id: peptide_fasta
+        source: convert_gtf_to_peptide_sequences_1/peptide_fasta
+    out:
+      - id: summary
+    run: >-
+      ../../fungal_genome_assemblies_and_annotation/0.0.1/generate_summary_statistics_from_peptides.cwl
+    label: generate_summary_statistics_from_peptides
+    'sbg:x': 1253.2000732421875
+    'sbg:y': 392.00201416015625
 requirements: []
