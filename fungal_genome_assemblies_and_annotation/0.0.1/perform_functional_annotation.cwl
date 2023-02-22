@@ -17,10 +17,14 @@ inputs:
     type: File
     'sbg:x': -926.053466796875
     'sbg:y': 571.1797485351562
-  - id: blast_db
+  - id: blast_db_directory
     type: Directory
-    'sbg:x': -913.62939453125
-    'sbg:y': 779.5615844726562
+    'sbg:x': -930.106689453125
+    'sbg:y': 762.048828125
+  - id: blast_db_database
+    type: string
+    'sbg:x': -945.3521118164062
+    'sbg:y': 925.2144775390625
 outputs:
   - id: predicted_nonCSEPs
     outputSource:
@@ -109,15 +113,16 @@ steps:
         source: convert_gtf_to_peptide_sequences/peptide_fasta
       - id: threads
         source: threads
-      - id: blast_db
-        default: nt
-        source: blast_db
+      - id: blast_db_directory
+        source: blast_db_directory
+      - id: blast_db_database
+        source: blast_db_database
     out:
       - id: blast_results
     run: ../../ncbi_blast/2.13.0/blastp_against_ncbi_db.cwl
     label: blastp_against_ncbi_db
-    'sbg:x': 152.5390625
-    'sbg:y': 710.5119018554688
+    'sbg:x': 104.72389221191406
+    'sbg:y': 676.44921875
   - id: convert_gtf_to_peptide_sequences
     in:
       - id: reference
