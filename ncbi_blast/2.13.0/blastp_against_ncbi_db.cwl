@@ -17,9 +17,6 @@ inputs:
     type: Directory
   - id: blast_db_database
     type: string
-    inputBinding:
-      position: 0
-      shellQuote: false
 outputs:
   - id: blast_results
     type: File
