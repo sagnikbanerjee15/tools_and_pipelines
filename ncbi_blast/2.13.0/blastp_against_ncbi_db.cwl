@@ -28,7 +28,7 @@ arguments:
     valueFrom: |-
       ${
           
-          return "blastp -db "+inputs.blast_db.path+"/nr -out blastn_results -query "+inputs.query.path + " -outfmt '7 qseqid sseqid qlen qstart qend sstart send evalue bitscore length pident qcovs qlen slen' "
+          return "blastp -db "+inputs.blast_db.path+" -out blastn_results -query "+inputs.query.path + " -outfmt '7 qseqid sseqid qlen qstart qend sstart send evalue bitscore length pident qcovs qlen slen' "
       }
 requirements:
   - class: ShellCommandRequirement
