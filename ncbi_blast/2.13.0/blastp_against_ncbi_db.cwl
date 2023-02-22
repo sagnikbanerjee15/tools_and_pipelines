@@ -13,8 +13,13 @@ inputs:
       position: 2
       prefix: '-num_threads'
       shellQuote: false
-  - id: blast_db
+  - id: blast_db_directory
     type: Directory
+  - id: blast_db_database
+    type: string
+    inputBinding:
+      position: 0
+      shellQuote: false
 outputs:
   - id: blast_results
     type: File
@@ -28,7 +33,7 @@ arguments:
     valueFrom: |-
       ${
           
-          return "blastp -db "+inputs.blast_db.path+" -out blastn_results -query "+inputs.query.path + " -outfmt '7 qseqid sseqid qlen qstart qend sstart send evalue bitscore length pident qcovs qlen slen' "
+          return "blastp -db "+inputs.blast_db_directory.path+"/"+inputs.blast_db_database+" -out blastn_results -query "+inputs.query.path + " -outfmt '7 qseqid sseqid qlen qstart qend sstart send evalue bitscore length pident qcovs qlen slen' "
       }
 requirements:
   - class: ShellCommandRequirement
